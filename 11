@@ -1,0 +1,6 @@
+SELECT Валюта, КУРС AS КУРС_последний, LAG(КУРС) OVER (PARTITION BY Валюта ORDER BY Дата) AS КУРС_Предпоследний
+FROM (
+    SELECT *, ROW_NUMBER() OVER (PARTITION BY Валюта ORDER BY Дата DESC) AS rn
+    FROM таблица_с_курсами
+) t
+WHERE rn = 1

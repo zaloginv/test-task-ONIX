@@ -1,0 +1,7 @@
+SELECT
+    Date,
+    SUM(Amount) OVER (ORDER BY Date) AS RunningTotal
+FROM
+    TBL
+ORDER BY
+    Date
